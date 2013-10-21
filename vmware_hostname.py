@@ -29,20 +29,18 @@ def main():
 def shutdown_vm(server):
     datacenter = 'HUBCNSH'
     pathlist = server.get_registered_vms(datacenter = datacenter,advanced_filters={'runtime.powerState':['poweredOn', 'suspended']})
-
     total = 0
+
     for path in pathlist:
         total = total + 1
         print total, path.split('/')[1][:-4]
 
-    print ("Enter the number  you would like to force shutdown..")
+    print ("=" * 30)
+    print ("Enter the hostname you would like to force shutdown")
 
-    #hostname=raw_input(">")
-    #vm_path = [path for path in pathlist if hostname in path]
-    #vm = server.get_vm_by_path(vm_path[0])
-    number=raw_input(">")
-    i = int(number) - 1
-    vm = server.get_vm_by_path(pathlist[i])
+    hostname=raw_input(">")
+    vm_path = [path for path in pathlist if hostname in path]
+    vm = server.get_vm_by_path(vm_path[0])
     vm.power_off()
     print ("Job done!")
 
@@ -57,10 +55,10 @@ def start_vm(server):
         print total, path.split('/')[1][:-4]
 
     print("=" * 30)
-    print ("Enter the number which server you would like to bring it up")
-    number=raw_input(">")
-    i = int(number) - 1
-    vm = server.get_vm_by_path(pathlist[i])
+    print ("Enter the hostname server you would like to bring it up")
+    hostname=raw_input(">")
+    vm_path = [path for path in pathlist if hostname in path]
+    vm = server.get_vm_by_path(vm_path[0])
     vm.power_on()
     print ("Job done!")
 
@@ -74,11 +72,11 @@ def reset_vm(server):
         print total, path.split('/')[1][:-4]
 
     print ("=" * 30)
-    print ("Enter the number which server you would like to force shutdown")
+    print ("Enter the hostname you would like to force shutdown")
 
-    number=raw_input(">")
-    i = int(number) - 1
-    vm = server.get_vm_by_path(pathlist[i])
+    hostname=raw_input(">")
+    vm_path = [path for path in pathlist if hostname in path]
+    vm = server.get_vm_by_path(vm_path[0])
     vm.reset()
     print ("Job done!")
 
@@ -96,6 +94,8 @@ def select(server):
     else:
         print ("We don't know what your enter is")
         sys.exit(1)
+
+
 
 
 if __name__ == "__main__":
