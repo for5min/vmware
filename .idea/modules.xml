@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/vmware.iml" filepath="$PROJECT_DIR$/.idea/vmware.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../xen/.idea/xen.iml" filepath="$PROJECT_DIR$/../xen/.idea/xen.iml" />
     </modules>
   </component>
 </project>
